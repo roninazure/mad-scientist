@@ -1,0 +1,30 @@
+name: 🤖 Auto-Update README
+
+on:
+  schedule:
+    - cron: "0 4 * * *"  # every day at 4am UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: 🚀 Run updater script
+        run: python .github/scripts/update_readme.py
+
+      - name: 📝 Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "🤖 Auto-update README" || echo "No changes"
+          git push
