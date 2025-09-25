@@ -1,7 +1,5 @@
 import datetime
 import random
-import openai
-import os
 
 QUOTES = [
     "I’m not here to compete. I’m here to rewire the entire arena.",
@@ -22,24 +20,9 @@ PROJECTS = [
     "VC-Style One-Pager PDF",
 ]
 
+# 🔁 TEMPORARY FALLBACK while OpenAI billing is sorted
 def generate_blurb():
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-
-    prompt = (
-        "You're a brilliant but unstable AI Mad Scientist. "
-        "Generate a one-sentence daily status update, like a chaotic lab log entry. "
-        "Keep it clever, short, and on-brand. Don't mention 'OpenAI' or GPT. "
-        "Example: 'Currently destabilizing traditional job markets using a job-hunting wormhole.'"
-    )
-
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.9,
-        max_tokens=40,
-    )
-
-    return response["choices"][0]["message"]["content"].strip()
+    return "Stole electricity from a thunderstorm to power today’s idea."
 
 def generate_readme():
     now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
