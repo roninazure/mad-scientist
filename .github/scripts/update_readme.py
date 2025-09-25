@@ -1,70 +1,37 @@
-import datetime
-import random
-import openai
-import os
+name: 🤖 Auto-Update README
 
-QUOTES = [
-    "I’m not here to compete. I’m here to rewire the entire arena.",
-    "This README is alive. Check back tomorrow.",
-    "Madness is doing the same thing twice and getting better results.",
-    "I don’t chase opportunity. I auto-generate it.",
-    "All systems nominal. Creativity abnormal.",
-    "This README rewrites itself. So do I.",
-    "Science is just magic with a command line.",
-]
+permissions:
+  contents: write
 
-PROJECTS = [
-    "ScottGPT: AI that pitches me",
-    "Secure RAG Playground",
-    "AutoJob Pipeline",
-    "Prompt Injection Showcase",
-    "Calgentik Labs site",
-    "VC-Style One-Pager PDF",
-]
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
 
-def generate_blurb():
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+jobs:
+  update:
+    runs-on: ubuntu-latest
 
-    prompt = (
-        "You're a brilliant but unstable AI Mad Scientist. "
-        "Generate a one-sentence daily status update, like a chaotic lab log entry. "
-        "Keep it clever, short, and on-brand. Don't mention 'OpenAI' or GPT. "
-        "Example: 'Currently destabilizing traditional job markets using a job-hunting wormhole.'"
-    )
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.9,
-        max_tokens=40,
-    )
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-    return response["choices"][0]["message"]["content"].strip()
+      - name: 📦 Install Python dependencies
+        run: pip install -r requirements.txt
 
-def generate_readme():
-    now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    quote = random.choice(QUOTES)
-    blurb = generate_blurb()
+      - name: 🚀 Run updater script
+        run: python .github/scripts/update_readme.py
 
-    project_list = "\n".join(f"- {p}" for p in PROJECTS)
-
-    return f"""# 🧪 Welcome to Mad Scientist Mode
-
-> {quote}
-
-🧠 **AI Log Entry:** _{blurb}_
-
----
-
-**🗓 Last updated:** {now}  
-**🧠 Current Focus:**  
-{project_list}
-
-**🔁 This README updates daily. Madness never sleeps.**
-
----
-"""
-
-if __name__ == "__main__":
-    with open("README.md", "w") as f:
-        f.write(generate_readme())
+      - name: 📝 Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
+          git add README.md
+          git commit -m "🤖 Auto-update README" || echo "No changes"
+          git push origin main
