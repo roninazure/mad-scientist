@@ -1,4 +1,4 @@
-name: 🤖 Auto-Update README
+name:  Auto-Update README
 
 permissions:
   contents: write
@@ -13,25 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repo
+      - name:  Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🐍 Set up Python
+      - name:  Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
-      - name: 📦 Install Python dependencies
+      - name:  Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: 🚀 Run updater script
+      - name:  Run updater script
         run: python .github/scripts/update_readme.py
 
-      - name: 📝 Commit changes
+      - name:  Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase origin main
           git add README.md
-          git commit -m "🤖 Auto-update README" || echo "No changes"
+          git commit -m "Auto-update README" || echo "No changes"
           git push origin main
