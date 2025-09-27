@@ -1,12 +1,12 @@
 # 🧪 Welcome to Mad Scientist Mode
 
-> This README is alive. Check back tomorrow.
+> This README rewrites itself. So do I.
 
 🧠 **AI Log Entry:** _Stole electricity from a thunderstorm to power today’s idea._
 
 ---
 
-**🗓 Last updated:** 2025-09-27 16:39:41 UTC  
+**🗓 Last updated:** 2025-09-27 17:23:51 UTC  
 **🧠 Current Focus:**  
 - ScottGPT: AI that pitches me
 - Secure RAG Playground
@@ -21,11 +21,11 @@
 > Stole electricity from a thunderstorm to power today’s idea.
 
 ## 🎚️ ScottGPT Personality Tuning Sliders
-- 🔊 Boldness: **88/100**
-- 🌀 Creativity: **79/100**
-- 🕵️ Obscurity: **54/100**
-- ⚙️ Hackiness: **83/100**
-- 📡 Broadcast Level: **83/100**
+- 🔊 Boldness: **76/100**
+- 🌀 Creativity: **88/100**
+- 🕵️ Obscurity: **76/100**
+- ⚙️ Hackiness: **98/100**
+- 📡 Broadcast Level: **62/100**
 
 _Tip for the curious: some lines contain encoded breadcrumbs. Decode wisely._
 
