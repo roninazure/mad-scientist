@@ -1,5 +1,6 @@
 import datetime
 import random
+import os
 
 QUOTES = [
     "I’m not here to compete. I’m here to rewire the entire arena.",
@@ -31,23 +32,4 @@ def generate_readme():
 
     project_list = "\n".join(f"- {p}" for p in PROJECTS)
 
-    return f"""# 🧪 Welcome to Mad Scientist Mode
-
-> {quote}
-
-🧠 **AI Log Entry:** _{blurb}_
-
----
-
-**🗓 Last updated:** {now}  
-**🧠 Current Focus:**  
-{project_list}
-
-**🔁 This README updates daily. Madness never sleeps.**
-
----
-"""
-
-if __name__ == "__main__":
-    with open("README.md", "w") as f:
-        f.write(generate_readme())
+    return f"""# 
