@@ -1,9 +1,9 @@
 name: 🔁 Auto-update README
 
 on:
-  workflow_dispatch:  # Manual run support
+  workflow_dispatch:         # ✅ Allows manual trigger via GitHub CLI or UI
   schedule:
-    - cron: '0 4 * * *'  # Nightly at 4:00 AM UTC
+    - cron: '0 4 * * *'      # ✅ Runs nightly at 4:00 AM UTC
 
 jobs:
   update-readme:
@@ -26,10 +26,10 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-     - name: 🔄 Commit changes (as Scott Steele)
+      - name: 🔄 Commit changes (as Scott Steele)
         run: |
           git config --global user.name 'Scott Steele'
-          git config --global user.email 'YOUR_EMAIL_HERE'
+          git config --global user.email 'scottsteele@yourdomain.com'  # 🔁 CHANGE THIS to your GitHub email
           git stash
           git pull --rebase origin main
           git stash pop || true
