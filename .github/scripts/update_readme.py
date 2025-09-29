@@ -1,95 +1,95 @@
 import os
-import datetime
 import random
-import openai
 import requests
+from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-QUOTES = [
-    "I’m not here to compete. I’m here to rewire the entire arena.",
-    "This README is alive. Check back tomorrow.",
-    "Madness is doing the same thing twice and getting better results.",
-    "I don’t chase opportunity. I auto-generate it.",
-    "All systems nominal. Creativity abnormal.",
-    "This README rewrites itself. So do I.",
-    "Science is just magic with a command line.",
+README_PATH = "README.md"
+AI_LOG_FILE = ".github/mad-log/ai_memory_log.md"
+
+# === 🔮 EXPERIMENT LOGIC ===
+EXPERIMENT_TEMPLATES = [
+    "Today, I successfully trained an AI to compose symphonies using only the electromagnetic waves emitted by a microwave reheating leftover lasagna, resulting in a hauntingly delicious sonata I call \"The Mozzarella Crescendo.\"",
+    "Today's most unhinged AI experiment involved training an algorithm to compose operatic arias by sampling the electromagnetic frequencies emitted from the synchronized opening of a thousand pickle jars under a full moon.",
+    "I taught an AI to detect sarcasm in government press releases. It exploded.",
+    "I trained an LLM exclusively on conspiracy theory forums and now it thinks *I'm* the simulation.",
+    "Built a neural network that only responds to questions asked while holding a rubber duck. Accuracy shot up 400%."
 ]
 
-PROJECTS = [
-    "ScottGPT: AI that pitches me",
-    "Secure RAG Playground",
-    "AutoJob Pipeline",
-    "Prompt Injection Showcase",
-    "Calgentik Labs site",
-    "VC-Style One-Pager PDF",
-]
+def generate_ai_log():
+    return random.choice(EXPERIMENT_TEMPLATES)
 
-def fetch_threat_domain():
-    try:
-        response = requests.get("https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt")
-        domains = response.text.strip().splitlines()
-        suspicious_ip = random.choice(domains[10:])  # skip header
-        return f"Suspicious IP of the day: `{suspicious_ip}`"
-    except Exception as e:
-        return f"Could not fetch suspicious IP: {e}"
+# === 🌐 LIVE FEED LOGIC ===
+def get_suspicious_ip():
+    return f"{random.randint(1,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(1,255)}"
 
-def fetch_bitcoin_price():
+def get_bitcoin_price():
     try:
-        response = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
+        response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd", timeout=5)
         data = response.json()
-        price = data['bpi']['USD']['rate']
-        return f"Bitcoin price: ${price}"
+        return f"${data['bitcoin']['usd']:,}"
     except Exception as e:
         return f"Could not fetch BTC price: {e}"
 
-def generate_blurb():
+def get_ufo_sighting():
     try:
-        client = openai.OpenAI(api_key=openai.api_key)
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": "You're ScottGPT, a slightly unhinged AI researcher who logs bizarre daily experiments."},
-                {"role": "user", "content": "Generate a one-sentence log of today’s most unhinged AI experiment, worthy of a mad scientist."},
-            ],
-            temperature=0.9,
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        return f"Experiment log failed: {e}"
+        # Placeholder for actual UFO API or data source
+        cities = ["Roswell, NM", "Rendlesham Forest, UK", "Phoenix, AZ", "Kecksburg, PA", "Shag Harbor, NS"]
+        shapes = ["disc", "triangle", "cylinder", "orb", "boomerang"]
+        return f"Reported {random.choice(shapes)} sighting near {random.choice(cities)}"
+    except:
+        return "No UFO data available today. The truth is out there."
 
-def generate_readme():
-    now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    quote = random.choice(QUOTES)
-    blurb = generate_blurb()
-    threat = fetch_threat_domain()
-    btc = fetch_bitcoin_price()
-    project_list = "\n".join(f"- {p}" for p in PROJECTS)
+# === 🧠 MEMORY SYSTEM ===
+def write_memory_log(entry):
+    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    with open(AI_LOG_FILE, "a") as f:
+        f.write(f"[{timestamp}] {entry}\n")
 
-    return f"""# 🧪 Welcome to Mad Scientist Mode
+# === 📝 README UPDATER ===
+def update_readme():
+    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    ai_entry = generate_ai_log()
+    suspicious_ip = get_suspicious_ip()
+    btc_price = get_bitcoin_price()
+    ufo_sighting = get_ufo_sighting()
 
-> {quote}
+    write_memory_log(ai_entry)
 
-🧠 **AI Log Entry:** _{blurb}_
+    with open(README_PATH, "r") as f:
+        lines = f.readlines()
 
-📡 **Live Feeds:**
-- {threat}
-- {btc}
+    new_lines = []
+    in_ai_log = False
+    in_live_feed = False
 
----
+    for line in lines:
+        if line.strip().startswith("🧠 AI Log Entry"):
+            in_ai_log = True
+            new_lines.append(f"🧠 AI Log Entry: *{ai_entry}*\n")
+        elif in_ai_log and line.strip() == "":
+            in_ai_log = False
+            new_lines.append(line)
+        elif line.strip().startswith("🐍 Live Feeds"):
+            in_live_feed = True
+            new_lines.append("🐍 Live Feeds:\n")
+            new_lines.append(f"- Suspicious IP of the day: `{suspicious_ip}`\n")
+            new_lines.append(f"- Current BTC price: {btc_price}\n")
+            new_lines.append(f"- 🛸 UFO Sighting of the Day: {ufo_sighting}\n")
+        elif in_live_feed and line.strip() == "":
+            in_live_feed = False
+            new_lines.append(line)
+        elif line.strip().startswith("🕒 Last updated"):
+            new_lines.append(f"🕒 Last updated: {timestamp}\n")
+        else:
+            new_lines.append(line)
 
-**🗓 Last updated:** {now}  
-**🧠 Current Focus:**  
-{project_list}
-
-**🔁 This README updates daily. Madness never sleeps.**
-
----
-"""
+    with open(README_PATH, "w") as f:
+        f.writelines(new_lines)
 
 if __name__ == "__main__":
-    with open("README.md", "w") as f:
-        f.write(generate_readme())
+    update_readme()
