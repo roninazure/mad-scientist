@@ -1,95 +1,88 @@
 import os
-import random
+import openai
 import requests
+import random
 from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-README_PATH = "README.md"
-AI_LOG_FILE = ".github/mad-log/ai_memory_log.md"
+def get_ai_log():
+    prompt = (
+        "Give me a fictional AI experiment of the day, written like a mad scientist log entry. "
+        "Be bizarre, creative, and short enough for a README."
+    )
+    response = openai.ChatCompletion.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "You are a mad AI scientist."},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=1.1,
+        max_tokens=100,
+    )
+    return response.choices[0].message.content.strip()
 
-# === 🔮 EXPERIMENT LOGIC ===
-EXPERIMENT_TEMPLATES = [
-    "Today, I successfully trained an AI to compose symphonies using only the electromagnetic waves emitted by a microwave reheating leftover lasagna, resulting in a hauntingly delicious sonata I call \"The Mozzarella Crescendo.\"",
-    "Today's most unhinged AI experiment involved training an algorithm to compose operatic arias by sampling the electromagnetic frequencies emitted from the synchronized opening of a thousand pickle jars under a full moon.",
-    "I taught an AI to detect sarcasm in government press releases. It exploded.",
-    "I trained an LLM exclusively on conspiracy theory forums and now it thinks *I'm* the simulation.",
-    "Built a neural network that only responds to questions asked while holding a rubber duck. Accuracy shot up 400%."
-]
-
-def generate_ai_log():
-    return random.choice(EXPERIMENT_TEMPLATES)
-
-# === 🌐 LIVE FEED LOGIC ===
 def get_suspicious_ip():
-    return f"{random.randint(1,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(1,255)}"
+    # Dummy suspicious IP generator
+    return f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"
 
 def get_bitcoin_price():
     try:
-        response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd", timeout=5)
+        response = requests.get(
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd", timeout=5
+        )
         data = response.json()
         return f"${data['bitcoin']['usd']:,}"
     except Exception as e:
         return f"Could not fetch BTC price: {e}"
 
 def get_ufo_sighting():
-    try:
-        # Placeholder for actual UFO API or data source
-        cities = ["Roswell, NM", "Rendlesham Forest, UK", "Phoenix, AZ", "Kecksburg, PA", "Shag Harbor, NS"]
-        shapes = ["disc", "triangle", "cylinder", "orb", "boomerang"]
-        return f"Reported {random.choice(shapes)} sighting near {random.choice(cities)}"
-    except:
-        return "No UFO data available today. The truth is out there."
+    # Simulated UFO feed (or eventually hook to real UFO sightings API)
+    fake_sightings = [
+        "3 glowing orbs over Nevada desert",
+        "Disc-shaped object seen over Tokyo Tower",
+        "Fast-moving lights zigzagging above the Atlantic Ocean",
+        "Silent triangle over rural Iowa farm",
+        "Hovering saucer with blinking lights in São Paulo"
+    ]
+    return random.choice(fake_sightings)
 
-# === 🧠 MEMORY SYSTEM ===
-def write_memory_log(entry):
-    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    with open(AI_LOG_FILE, "a") as f:
-        f.write(f"[{timestamp}] {entry}\n")
-
-# === 📝 README UPDATER ===
 def update_readme():
-    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    ai_entry = generate_ai_log()
+    ai_log = get_ai_log()
     suspicious_ip = get_suspicious_ip()
     btc_price = get_bitcoin_price()
-    ufo_sighting = get_ufo_sighting()
+    ufo = get_ufo_sighting()
+    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    write_memory_log(ai_entry)
+    readme = f"""# 🧪 Welcome to Mad Scientist Mode
 
-    with open(README_PATH, "r") as f:
-        lines = f.readlines()
+This README is alive. Check back tomorrow.
 
-    new_lines = []
-    in_ai_log = False
-    in_live_feed = False
+🧠 **AI Log Entry**: {ai_log}
 
-    for line in lines:
-        if line.strip().startswith("🧠 AI Log Entry"):
-            in_ai_log = True
-            new_lines.append(f"🧠 AI Log Entry: *{ai_entry}*\n")
-        elif in_ai_log and line.strip() == "":
-            in_ai_log = False
-            new_lines.append(line)
-        elif line.strip().startswith("🐍 Live Feeds"):
-            in_live_feed = True
-            new_lines.append("🐍 Live Feeds:\n")
-            new_lines.append(f"- Suspicious IP of the day: `{suspicious_ip}`\n")
-            new_lines.append(f"- Current BTC price: {btc_price}\n")
-            new_lines.append(f"- 🛸 UFO Sighting of the Day: {ufo_sighting}\n")
-        elif in_live_feed and line.strip() == "":
-            in_live_feed = False
-            new_lines.append(line)
-        elif line.strip().startswith("🕒 Last updated"):
-            new_lines.append(f"🕒 Last updated: {timestamp}\n")
-        else:
-            new_lines.append(line)
+🦴 **Live Feeds**:
+- Suspicious IP of the day: `{suspicious_ip}`
+- 🟠 Bitcoin price (via CoinGecko): **{btc_price}**
+- 🛸 UFO Sighting of the Day: *{ufo}*
 
-    with open(README_PATH, "w") as f:
-        f.writelines(new_lines)
+🗓️ **Last updated**: {timestamp}
+
+📡 **Current Focus:**
+- ScottGPT: AI that pitches me
+- Secure RAG Playground
+- AutoJob Pipeline
+- Prompt Injection Showcase
+- Calgentik Labs site
+- VC-Style One-Pager PDF
+
+> This README updates daily. Madness never sleeps.
+"""
+
+    with open("README.md", "w") as f:
+        f.write(readme)
 
 if __name__ == "__main__":
     update_readme()
