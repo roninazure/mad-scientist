@@ -19,7 +19,7 @@ jobs:
           python-version: '3.10'
 
       - name: 📦 Install dependencies
-        run: pip install openai python-dotenv
+        run: pip install openai python-dotenv requests  # ✅ Added `requests` here
 
       - name: 🚀 Run updater script
         run: python .github/scripts/update_readme.py
@@ -29,7 +29,7 @@ jobs:
       - name: 🔄 Commit changes (as Scott Steele)
         run: |
           git config --global user.name 'Scott Steele'
-          git config --global user.email 'scottsteele@yourdomain.com'  # 🔁 CHANGE THIS to your GitHub email
+          git config --global user.email 'scottsteele@yourdomain.com'  # 🔁 Replace with your actual GitHub email
           git stash
           git pull --rebase origin main
           git stash pop || true
