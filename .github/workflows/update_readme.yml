@@ -1,38 +1,33 @@
-name: 🔁 Auto-update README
+name: Auto-update README
 
 on:
-  workflow_dispatch:         # ✅ Allows manual trigger via GitHub CLI or UI
+  workflow_dispatch:
   schedule:
-    - cron: '0 4 * * *'      # ✅ Runs nightly at 4:00 AM UTC
+    - cron: "0 13 * * *"  # Runs every day at 9AM ET
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v3
 
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: 📦 Install dependencies
-        run: pip install openai python-dotenv requests
+        run: pip install -r requirements.txt
 
       - name: 🚀 Run updater script
         run: python .github/scripts/update_readme.py
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      - name: 🔄 Commit changes (as Scott Steele)
-        run: |
-          git config --global user.name 'Scott Steele'
-          git config --global user.email 'roninazure@gmail.com'
-          git stash
-          git pull --rebase origin main
-          git stash pop || true
-          git add README.md
-          git commit -m "🤖 Auto-update README (ScottGPT)" || echo "No changes to commit"
-          git push origin main
+      - name: 💾 Commit changes (as Scott Steele)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🧠 Auto-update README (ScottGPT)"
+
