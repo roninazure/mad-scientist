@@ -1,38 +1,30 @@
-import os
-import openai
 import requests
 import random
-from datetime import datetime
-from dotenv import load_dotenv
+import datetime
+import feedparser
 
-load_dotenv()
+README_PATH = "README.md"
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-def get_ai_log():
-    prompt = (
-        "Give me a fictional AI experiment of the day, written like a mad scientist log entry. "
-        "Be bizarre, creative, and short enough for a README."
-    )
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
-        messages=[
-            {"role": "system", "content": "You are a mad AI scientist."},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=1.1,
-        max_tokens=100,
-    )
-    return response.choices[0].message.content.strip()
+def get_ai_log_entry():
+    prompts = [
+        "trained an AI to compose symphonies using only the electromagnetic waves emitted by a microwave reheating leftover lasagna",
+        "taught an AI to detect sarcasm in legal contracts with 97% accuracy",
+        "developed a neural net that dreams about solving quantum physics with crayons",
+        "trained a transformer to simulate the behavior of a squirrel during a caffeine overdose",
+        "trained an AI to write obituaries for obsolete technology in iambic pentameter",
+        "developed a GAN that hallucinates future startup ideas based on pizza toppings",
+    ]
+    return random.choice(prompts)
 
 def get_suspicious_ip():
-    # Dummy suspicious IP generator
-    return f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"
+    octets = [str(random.randint(1, 255)) for _ in range(4)]
+    return ".".join(octets)
 
 def get_bitcoin_price():
     try:
         response = requests.get(
-            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd", timeout=5
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd",
+            timeout=5
         )
         data = response.json()
         return f"${data['bitcoin']['usd']:,}"
@@ -40,37 +32,38 @@ def get_bitcoin_price():
         return f"Could not fetch BTC price: {e}"
 
 def get_ufo_sighting():
-    # Simulated UFO feed (or eventually hook to real UFO sightings API)
-    fake_sightings = [
-        "3 glowing orbs over Nevada desert",
-        "Disc-shaped object seen over Tokyo Tower",
-        "Fast-moving lights zigzagging above the Atlantic Ocean",
-        "Silent triangle over rural Iowa farm",
-        "Hovering saucer with blinking lights in São Paulo"
-    ]
-    return random.choice(fake_sightings)
+    try:
+        feed = feedparser.parse("https://nuforc.org/webreports/rss.xml")
+        if feed.entries:
+            entry = random.choice(feed.entries[:5])  # Take from most recent 5
+            title = entry.title
+            date = entry.published
+            return f"🛸 UFO sighting: *{title}* ({date})"
+        return "🛸 No recent UFO sightings found."
+    except Exception as e:
+        return f"🛸 Error fetching UFO feed: {e}"
 
-def update_readme():
-    ai_log = get_ai_log()
+def build_readme():
+    ai_log = get_ai_log_entry()
     suspicious_ip = get_suspicious_ip()
     btc_price = get_bitcoin_price()
-    ufo = get_ufo_sighting()
-    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    ufo_entry = get_ufo_sighting()
+    now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    readme = f"""# 🧪 Welcome to Mad Scientist Mode
+    content = f"""# 🧪 Welcome to Mad Scientist Mode
 
-This README is alive. Check back tomorrow.
+> This README is alive. Check back tomorrow.
 
-🧠 **AI Log Entry**: {ai_log}
+🧠 **AI Log Entry**: Today, I {ai_log}, resulting in a hauntingly delicious sonata I call *The Mozzarella Crescendo.*
 
-🦴 **Live Feeds**:
+🛰️ **Live Feeds**:
 - Suspicious IP of the day: `{suspicious_ip}`
-- 🟠 Bitcoin price (via CoinGecko): **{btc_price}**
-- 🛸 UFO Sighting of the Day: *{ufo}*
+- 💰 Bitcoin price: {btc_price}
+- {ufo_entry}
 
-🗓️ **Last updated**: {timestamp}
+📅 **Last updated**: {now}
 
-📡 **Current Focus:**
+🧪 **Current Focus**:
 - ScottGPT: AI that pitches me
 - Secure RAG Playground
 - AutoJob Pipeline
@@ -78,11 +71,11 @@ This README is alive. Check back tomorrow.
 - Calgentik Labs site
 - VC-Style One-Pager PDF
 
-> This README updates daily. Madness never sleeps.
+> _This README updates daily. Madness never sleeps._
 """
 
-    with open("README.md", "w") as f:
-        f.write(readme)
+    with open(README_PATH, "w") as f:
+        f.write(content)
 
 if __name__ == "__main__":
-    update_readme()
+    build_readme()
