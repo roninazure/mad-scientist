@@ -1,4 +1,3 @@
-
 🧠 **AI Log Entry:** Research Log Entry #3220
 
 Date: July 13, 2157
@@ -33,9 +32,9 @@ Note: Remember, just because one is a mad scientist doesn't mean one can't also 
 
 <!--START_SHODAN-->
 ### 🛰️ Shodan Recon Feed
-👁️‍🗨️ Exposed Webcam: ⚠️ Shodan API key missing or unauthorized
-💀 Port 22 (SSH) exposed: ⚠️ Shodan API key missing or unauthorized
-🧩 Exposed MongoDB: ⚠️ Shodan API key missing or unauthorized
+👁️‍🗨️ Exposed Webcam: ⚠️ Shodan API key missing or unauthorized  
+💀 Port 22 (SSH) exposed: ⚠️ Shodan API key missing or unauthorized  
+🧩 Exposed MongoDB: ⚠️ Shodan API key missing or unauthorized  
 🗺️ Global Threat Map Snapshot: [![ThreatMap](https://shodan.io/images/worldmap.png)](https://www.shodan.io/search?query=map)
 <!--END_SHODAN-->
 
@@ -50,3 +49,4 @@ Note: Remember, just because one is a mad scientist doesn't mean one can't also 
 - VC-Style One-Pager PDF
 
 🔁 _This README updates daily. Madness never sleeps._
+

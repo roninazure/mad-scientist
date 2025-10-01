@@ -31,10 +31,11 @@ jobs:
           SHODAN_API_KEY: ${{ secrets.SHODAN_API_KEY }}
         run: python .github/scripts/update_readme.py
 
-      - name: 💾 Commit changes (as Scott Steele)
+      - name: 💾 Commit and push README changes (safe rebase)
         run: |
           git config --global user.name "Scott Steele"
-          git config --global user.email "roninazure@gmail.com"  # ← YOUR ACTUAL GITHUB EMAIL
+          git config --global user.email "roninazure@gmail.com"
           git add README.md
           git commit -m "🤖 Auto-update README" || echo "No changes to commit"
+          git pull --rebase
           git push
