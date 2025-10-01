@@ -11,9 +11,9 @@
 
 <!--START_SHODAN-->
 ### 🛰️ Shodan Recon Feed
-👁️‍🗨️ Exposed Webcam: `92.27.57.4:554` _(TalkTalk Communications Limited)_
-💀 Port 22 (SSH) exposed: `135.148.246.146:22` _(OVH US LLC)_
-🧩 Exposed MongoDB: 💤 No results found.
+👁️‍🗨️ Exposed Webcam: ⚠️ Shodan error: Expecting value: line 1 column 1 (char 0)
+💀 Port 22 (SSH) exposed: ⚠️ Shodan error: Expecting value: line 1 column 1 (char 0)
+🧩 Exposed MongoDB: ⚠️ Shodan error: Expecting value: line 1 column 1 (char 0)
 🗺️ Global Threat Map Snapshot: [![ThreatMap](https://shodan.io/images/worldmap.png)](https://shodan.io)
 <!--END_SHODAN-->
 
