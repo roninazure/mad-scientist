@@ -26,12 +26,15 @@ jobs:
 
       - name: 🚀 Run updater script
         working-directory: ${{ github.workspace }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SHODAN_API_KEY: ${{ secrets.SHODAN_API_KEY }}
         run: python .github/scripts/update_readme.py
 
       - name: 💾 Commit changes (as Scott Steele)
         run: |
           git config --global user.name "Scott Steele"
-          git config --global user.email "your-email@example.com"
+          git config --global user.email "roninazure@gmail.com"  # ← YOUR ACTUAL GITHUB EMAIL
           git add README.md
           git commit -m "🤖 Auto-update README" || echo "No changes to commit"
           git push
