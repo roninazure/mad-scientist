@@ -1,53 +1,52 @@
 import os
-from dotenv import load_dotenv
 import datetime
-from openai import OpenAI
 import requests
+from openai import OpenAI
+from dotenv import load_dotenv
 
 load_dotenv()
 
-# === Setup Clients ===
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-shodan_api_key = os.getenv("SHODAN_API_KEY")
+SHODAN_API_KEY = os.environ.get("SHODAN_API_KEY")
 
-# === Generate AI Log Entry ===
+# === AI Log Entry ===
 ai_log = client.chat.completions.create(
     model="gpt-4",
     messages=[
         {"role": "system", "content": "You're a mad scientist AI generating daily absurd research logs."},
-        {"role": "user", "content": "Give me today's log entry."},
-    ],
+        {"role": "user", "content": "Give me today's log entry."}
+    ]
 )
 ai_entry = ai_log.choices[0].message.content.strip()
 
-# === Sample Live Feeds ===
+# === Live Feeds (fun placeholders) ===
 suspicious_ip = "86.140.121.31"
 bitcoin_price = "$114,319.00"
 ufo_sighting = "Teardrop-shaped craft spotted over rural Oregon; chased by two F-16s, disappeared into low cloud cover."
 
-# === Shodan Queries ===
+# === Shodan Live API Feeds ===
 def shodan_search(query):
     try:
         r = requests.get(f"https://api.shodan.io/shodan/host/search", params={
-            "key": shodan_api_key,
+            "key": SHODAN_API_KEY,
             "query": query
         })
-        r.raise_for_status()
         data = r.json()
         if data.get("matches"):
-            ip = data["matches"][0]["ip_str"]
-            return f"`{ip}`"
-        else:
-            return "⚠️ No results"
+            ip_str = data["matches"][0].get("ip_str", "N/A")
+            return ip_str
+        return "No result"
     except Exception as e:
-        return "⚠️ Shodan API key missing or unauthorized"
+        return f"⚠️ Error: {e}"
 
-webcam_info = shodan_search("port:554 has_screenshot:true")
-ssh_info = shodan_search("port:22")
-mongo_info = shodan_search("port:27017")
+exposed_webcam = shodan_search("has_screenshot:true")
+exposed_mongodb = shodan_search("product:MongoDB")
+exposed_port22 = shodan_search("port:22")
 
-# === Build New README ===
+# === Timestamp ===
 now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
+# === Final README Content ===
 new_readme = f"""
 🧠 **AI Log Entry:** {ai_entry}
 
@@ -62,9 +61,9 @@ new_readme = f"""
 
 <!--START_SHODAN-->
 ### 🛰️ Shodan Recon Feed
-👁️‍🗨️ Exposed Webcam: {webcam_info}
-💀 Port 22 (SSH) exposed: {ssh_info}
-🧩 Exposed MongoDB: {mongo_info}
+👁️‍🗨️ Exposed Webcam: `{exposed_webcam}`
+💀 Port 22 (SSH) exposed: `{exposed_port22}`
+🧩 Exposed MongoDB: `{exposed_mongodb}`
 🗺️ Global Threat Map Snapshot: [![ThreatMap](https://shodan.io/images/worldmap.png)](https://www.shodan.io/search?query=map)
 <!--END_SHODAN-->
 
