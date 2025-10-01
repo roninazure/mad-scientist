@@ -1,9 +1,9 @@
 
 import os
-import datetime
-from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
+import datetime
+from openai import OpenAI
 
 # === Setup Clients ===
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
