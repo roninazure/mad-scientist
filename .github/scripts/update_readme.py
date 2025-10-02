@@ -23,7 +23,7 @@ ai_entry = ai_log.choices[0].message.content.strip()
 
 # === Live Feeds ===
 suspicious_ip = "86.140.121.31"
-bitcoin_price = "$114,319.00"
+bitcoin_price = "$118,640.23"
 
 # === Load UFO Sighting ===
 UFO_FEED_FILE = os.path.join(os.path.dirname(__file__), "../data/ufo_sightings.json")
