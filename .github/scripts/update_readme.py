@@ -1,6 +1,8 @@
 import os
 import datetime
 import requests
+import json
+import random
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -19,29 +21,42 @@ ai_log = client.chat.completions.create(
 )
 ai_entry = ai_log.choices[0].message.content.strip()
 
-# === Live Feeds (fun placeholders) ===
+# === Live Feeds ===
 suspicious_ip = "86.140.121.31"
 bitcoin_price = "$114,319.00"
-ufo_sighting = "Teardrop-shaped craft spotted over rural Oregon; chased by two F-16s, disappeared into low cloud cover."
 
-# === Shodan Live API Feeds ===
+# === Load UFO Sighting ===
+UFO_FEED_FILE = os.path.join(os.path.dirname(__file__), "../data/ufo_sightings.json")
+ufo_sighting = "No recent UFO sightings found."
+try:
+    with open(UFO_FEED_FILE, "r") as f:
+        sightings = json.load(f)
+        if sightings:
+            ufo_sighting = random.choice(sightings).strip()
+except Exception as e:
+    print(f"[WARN] Could not load UFO sightings: {e}")
+
+# === Shodan Live Queries ===
 def shodan_search(query):
     try:
-        r = requests.get(f"https://api.shodan.io/shodan/host/search", params={
+        r = requests.get("https://api.shodan.io/shodan/host/search", params={
             "key": SHODAN_API_KEY,
             "query": query
         })
         data = r.json()
         if data.get("matches"):
-            ip_str = data["matches"][0].get("ip_str", "N/A")
-            return ip_str
+            return data["matches"][0].get("ip_str", "N/A")
         return "No result"
     except Exception as e:
         return f"⚠️ Error: {e}"
 
-exposed_webcam = shodan_search("has_screenshot:true")
-exposed_mongodb = shodan_search("product:MongoDB")
-exposed_port22 = shodan_search("port:22")
+exposed_camera = shodan_search("product:Hikvision")
+exposed_ssh = shodan_search("port:22")
+exposed_mongo = shodan_search("product:MongoDB")
+exposed_rdp = shodan_search("port:3389")
+exposed_scada = shodan_search("port:502 OR product:Modbus")
+exposed_alarm = shodan_search("product:Hikvision OR port:34567")
+exposed_lpr = shodan_search("ANPR OR LPR OR plate reader")
 
 # === Timestamp ===
 now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
@@ -61,10 +76,16 @@ new_readme = f"""
 
 <!--START_SHODAN-->
 ### 🛰️ Shodan Recon Feed
-👁️‍🗨️ Exposed Webcam: `{exposed_webcam}`
-💀 Port 22 (SSH) exposed: `{exposed_port22}`
-🧩 Exposed MongoDB: `{exposed_mongodb}`
-🗺️ Global Threat Map Snapshot: [![ThreatMap](https://shodan.io/images/worldmap.png)](https://www.shodan.io/search?query=map)
+🔒 Security Camera Leak: `{exposed_camera}`
+💀 Port 22 (SSH) exposed: `{exposed_ssh}`
+🧩 Exposed MongoDB: `{exposed_mongo}`
+🗺️ Global Threat Map Snapshot: [🌍 Threat Map](https://www.shodan.io/search?query=map)
+
+### 🔥 High-Risk Exposure of the Day (DEFCON ZONE)
+- 🪟 RDP Exposure: `{exposed_rdp}`
+- ⚡ SCADA/ICS System: `{exposed_scada}`
+- 🚨 Security Alarm / Smart Home: `{exposed_alarm}`
+- 🛑 License Plate Reader: `{exposed_lpr}`
 <!--END_SHODAN-->
 
 🕒 **Last updated:** {now}
@@ -81,7 +102,7 @@ new_readme = f"""
 """
 
 # === Write to README.md ===
-with open("README.md", "w") as f:
+with open("../README.md", "w") as f:
     f.write(new_readme)
 
 print("✅ README updated successfully.")
