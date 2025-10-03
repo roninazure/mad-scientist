@@ -71,6 +71,23 @@ exposed_scada = shodan_search("port:502 OR product:Modbus")
 exposed_alarm = shodan_search("product:Hikvision OR port:34567")
 exposed_lpr = shodan_search("ANPR OR LPR OR plate reader")
 
+# === AI Recon Lore ===
+recon_blurb = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a black-ops AI analyst creating threat blurbs using live cyber recon IPs."},
+        {"role": "user", "content": f"""Write a dramatic 3-4 sentence blurb summarizing today's threat intelligence from Shodan:
+- Hikvision cam at {exposed_camera}
+- SSH exposed on {exposed_ssh}
+- MongoDB exposed at {exposed_mongo}
+- RDP open at {exposed_rdp}
+- SCADA system at {exposed_scada}
+- Alarm system at {exposed_alarm}
+- License Plate Reader at {exposed_lpr}
+Be vivid, concise, and theatrical."""}
+    ]
+).choices[0].message.content.strip()
+
 # === Timestamp ===
 now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
@@ -101,6 +118,11 @@ new_readme = f"""# 💪 Welcome to Mad Scientist Mode
 - ⚡ SCADA/ICS System: `{exposed_scada}`
 - 🚨 Security Alarm / Smart Home: `{exposed_alarm}`
 - 🚱 License Plate Reader: `{exposed_lpr}`
+
+---
+
+🧠 **AI Threat Recon Lore:**  
+{recon_blurb}
 <!--END_SHODAN-->
 
 🕒 **Last updated:** {now}
@@ -122,4 +144,3 @@ new_readme = f"""# 💪 Welcome to Mad Scientist Mode
 readme_path = Path(__file__).resolve().parents[2] / "README.md"
 readme_path.write_text(new_readme, encoding="utf-8")
 print(f"✅ README updated successfully at {readme_path}")
-
