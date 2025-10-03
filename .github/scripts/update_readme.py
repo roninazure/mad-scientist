@@ -22,28 +22,21 @@ ai_log = client.chat.completions.create(
 )
 ai_entry = ai_log.choices[0].message.content.strip()
 
-# === Suspicious IP (Static or Dynamic) ===
-suspicious_ip = "86.140.121.31"
-<<<<<<< HEAD
-bitcoin_price = "$118,640.23"
-=======
-
-# === Live Bitcoin Price via CoinGecko ===
+# === Live CoinGecko BTC Price ===
 def get_bitcoin_price():
     try:
-        r = requests.get("https://api.coingecko.com/api/v3/simple/price", params={
-            "ids": "bitcoin",
-            "vs_currencies": "usd"
-        })
-        data = r.json()
-        price = data["bitcoin"]["usd"]
+        url = "https://api.coingecko.com/api/v3/simple/price"
+        params = {"ids": "bitcoin", "vs_currencies": "usd"}
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        price = response.json()["bitcoin"]["usd"]
         return f"${price:,.2f}"
     except Exception as e:
-        print(f"[WARN] Could not fetch Bitcoin price: {e}")
-        return "Unavailable"
+        print(f"[WARN] Could not fetch BTC price: {e}")
+        return "$???"
 
 bitcoin_price = get_bitcoin_price()
->>>>>>> ea3e00c (🔄 Live README now uses CoinGecko for BTC)
+suspicious_ip = "86.140.121.31"
 
 # === Load UFO Sighting ===
 UFO_FEED_FILE = os.path.join(os.path.dirname(__file__), "../data/ufo_sightings.json")
@@ -82,7 +75,7 @@ exposed_lpr = shodan_search("ANPR OR LPR OR plate reader")
 now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
 # === Final README Content ===
-new_readme = f"""# 🧪 Welcome to Mad Scientist Mode
+new_readme = f"""# 💪 Welcome to Mad Scientist Mode
 
 > This README is alive. Check back tomorrow.
 
@@ -97,17 +90,17 @@ new_readme = f"""# 🧪 Welcome to Mad Scientist Mode
 - 🛸 UFO Sighting of the Day: {ufo_sighting}
 
 <!--START_SHODAN-->
-### 🛰️ Shodan Recon Feed
+### 🚁 Shodan Recon Feed
 - 🔒 Security Camera Leak: `{exposed_camera}`
-- 💀 Port 22 (SSH) exposed: `{exposed_ssh}`
-- 🧩 Exposed MongoDB: `{exposed_mongo}`
-- 🗺️ Global Threat Map Snapshot: [🌍 Threat Map](https://www.shodan.io/search?query=map)
+- 💠 Port 22 (SSH) exposed: `{exposed_ssh}`
+- 🧬 Exposed MongoDB: `{exposed_mongo}`
+- 🌍 Global Threat Map Snapshot: [🌍 Threat Map](https://www.shodan.io/search?query=map)
 
 ### 🔥 High-Risk Exposure of the Day (DEFCON ZONE)
 - 🪟 RDP Exposure: `{exposed_rdp}`
 - ⚡ SCADA/ICS System: `{exposed_scada}`
 - 🚨 Security Alarm / Smart Home: `{exposed_alarm}`
-- 🛑 License Plate Reader: `{exposed_lpr}`
+- 🚱 License Plate Reader: `{exposed_lpr}`
 <!--END_SHODAN-->
 
 🕒 **Last updated:** {now}
@@ -129,3 +122,4 @@ new_readme = f"""# 🧪 Welcome to Mad Scientist Mode
 readme_path = Path(__file__).resolve().parents[2] / "README.md"
 readme_path.write_text(new_readme, encoding="utf-8")
 print(f"✅ README updated successfully at {readme_path}")
+
