@@ -5,9 +5,10 @@ import json
 import random
 from openai import OpenAI
 from dotenv import load_dotenv
+from pathlib import Path
 
+# === Load API keys ===
 load_dotenv()
-
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 SHODAN_API_KEY = os.environ.get("SHODAN_API_KEY")
 
@@ -21,9 +22,28 @@ ai_log = client.chat.completions.create(
 )
 ai_entry = ai_log.choices[0].message.content.strip()
 
-# === Live Feeds ===
+# === Suspicious IP (Static or Dynamic) ===
 suspicious_ip = "86.140.121.31"
+<<<<<<< HEAD
 bitcoin_price = "$118,640.23"
+=======
+
+# === Live Bitcoin Price via CoinGecko ===
+def get_bitcoin_price():
+    try:
+        r = requests.get("https://api.coingecko.com/api/v3/simple/price", params={
+            "ids": "bitcoin",
+            "vs_currencies": "usd"
+        })
+        data = r.json()
+        price = data["bitcoin"]["usd"]
+        return f"${price:,.2f}"
+    except Exception as e:
+        print(f"[WARN] Could not fetch Bitcoin price: {e}")
+        return "Unavailable"
+
+bitcoin_price = get_bitcoin_price()
+>>>>>>> ea3e00c (🔄 Live README now uses CoinGecko for BTC)
 
 # === Load UFO Sighting ===
 UFO_FEED_FILE = os.path.join(os.path.dirname(__file__), "../data/ufo_sightings.json")
@@ -36,7 +56,7 @@ try:
 except Exception as e:
     print(f"[WARN] Could not load UFO sightings: {e}")
 
-# === Shodan Live Queries ===
+# === Shodan Queries ===
 def shodan_search(query):
     try:
         r = requests.get("https://api.shodan.io/shodan/host/search", params={
@@ -62,24 +82,26 @@ exposed_lpr = shodan_search("ANPR OR LPR OR plate reader")
 now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
 # === Final README Content ===
-new_readme = f"""
-🧠 **AI Log Entry:** {ai_entry}
+new_readme = f"""# 🧪 Welcome to Mad Scientist Mode
+
+> This README is alive. Check back tomorrow.
+
+🧠 **AI Log Entry:**  
+{ai_entry}
+
+---
 
 📡 **Live Feeds:**
 - 🕵️ Suspicious IP of the day: `{suspicious_ip}`
 - 💰 Bitcoin price: {bitcoin_price}
 - 🛸 UFO Sighting of the Day: {ufo_sighting}
 
-# 🧪 Welcome to Mad Scientist Mode
-
-> This README is alive. Check back tomorrow.
-
 <!--START_SHODAN-->
 ### 🛰️ Shodan Recon Feed
-🔒 Security Camera Leak: `{exposed_camera}`
-💀 Port 22 (SSH) exposed: `{exposed_ssh}`
-🧩 Exposed MongoDB: `{exposed_mongo}`
-🗺️ Global Threat Map Snapshot: [🌍 Threat Map](https://www.shodan.io/search?query=map)
+- 🔒 Security Camera Leak: `{exposed_camera}`
+- 💀 Port 22 (SSH) exposed: `{exposed_ssh}`
+- 🧩 Exposed MongoDB: `{exposed_mongo}`
+- 🗺️ Global Threat Map Snapshot: [🌍 Threat Map](https://www.shodan.io/search?query=map)
 
 ### 🔥 High-Risk Exposure of the Day (DEFCON ZONE)
 - 🪟 RDP Exposure: `{exposed_rdp}`
@@ -90,19 +112,20 @@ new_readme = f"""
 
 🕒 **Last updated:** {now}
 
+---
+
 ### 🧠 Current Focus
-- ScottGPT: AI that pitches me
-- Secure RAG Playground
-- AutoJob Pipeline
-- Prompt Injection Showcase
-- BlackOps Labs site
+- ScottGPT: AI that pitches me  
+- Secure RAG Playground  
+- AutoJob Pipeline  
+- Prompt Injection Showcase  
+- BlackOps Labs site  
 - VC-Style One-Pager PDF
 
 🔁 _This README updates daily. Madness never sleeps._
 """
 
-# === Write to README.md ===
-with open("../README.md", "w") as f:
-    f.write(new_readme)
-
-print("✅ README updated successfully.")
+# === Write to top-level README.md ===
+readme_path = Path(__file__).resolve().parents[2] / "README.md"
+readme_path.write_text(new_readme, encoding="utf-8")
+print(f"✅ README updated successfully at {readme_path}")
