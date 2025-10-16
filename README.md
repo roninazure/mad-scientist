@@ -68,5 +68,3 @@ In the pulsating web of global connectivity, vulnerabilities lie dormant, waitin
 - VC-Style One-Pager PDF
 
 🔁 _This README updates daily. Madness never sleeps._
-
-<!-- last-published: 2025-10-16T12:33:59 UTC -->
