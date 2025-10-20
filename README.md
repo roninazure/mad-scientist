@@ -8,7 +8,7 @@
 > - *CodexDaemon Whisper #47*
 
 🧩 **Status:** Active Surveillance / Passive Analysis  
-🕒 **Last Pulse:** 2025-10-20 16:57 UTC
+🕒 **Last Pulse:** 2025-10-20 17:23 UTC
 
 `[ SYSTEM STATUS: ONLINE ▮ ]`  
 `[ MONITORING: CodexDaemon Sub-Layer Activity ]`
@@ -18,28 +18,28 @@
 ---
 
 📡 **Live Feeds**
-- 💰 Bitcoin: $110,449.00
-- 🕵️ Suspicious IP: `128.251.208.211`
+- 💰 Bitcoin: $110,567.00
+- 🕵️ Suspicious IP: `98.251.107.85`
 - 🛸 UFO Sighting: None detected
 
 ---
 
 ### 🚨 Shodan Recon Snapshot
-- 📷 Camera: `145.55.63.239`
-- 🔐 SSH: `44.189.54.202`
-- 🧬 Mongo: `212.2.67.164`
-- 🪟 RDP: `174.149.39.203`
-- ⚡ SCADA: `199.24.116.178`
-- 🚨 Alarm: `28.186.208.222`
-- 🚗 LPR: `123.192.53.157`
+- 📷 Camera: `220.55.253.244`
+- 🔐 SSH: `111.57.86.173`
+- 🧬 Mongo: `76.138.78.215`
+- 🪟 RDP: `9.209.111.120`
+- ⚡ SCADA: `5.86.64.234`
+- 🚨 Alarm: `62.182.165.43`
+- 🚗 LPR: `16.212.56.109`
 
 ---
 
-🕒 **Last Updated:** 2025-10-20 16:57 UTC
+🕒 **Last Updated:** 2025-10-20 17:23 UTC
 
 <div align="center">
-🧬 <b>Automation Pulse:</b> 2025-10-20 16:57 UTC<br>
+🧬 <b>Automation Pulse:</b> 2025-10-20 17:23 UTC<br>
 <i>This README self-replicates daily.</i>
 </div>
 
-<!-- last-published: 2025-10-20T16:57:38 UTC -->
+<!-- last-published: 2025-10-20T17:23:42 UTC -->
