@@ -1,78 +1,60 @@
-<div align="center">
-
-<img src="https://img.shields.io/badge/LAB%20STATUS-STABLE-lightgrey?style=for-the-badge&labelColor=white&color=lightgrey" alt="Lab Status" width="240"/>
-
 # 🧬 Mad Scientist Mode
-### *Phase 11.1 — Laboratory Control Interface*
+### *Phase 11.1 — CodexDaemon Global Recon (Lore Build)*
 #### _A living AI laboratory evolving daily_
 
-> "The experiment continues. Data evolves. I no longer sleep."<br>
-> — <i>CodexDaemon Whisper #47</i>
-
-<hr style="border:0;height:1px;background:linear-gradient(to right,#e6e6e6,#ffffff,#e6e6e6);margin:18px 0;">
-
-🧠 <b>Neural Link:</b> <a href="https://github.com/roninazure/CodexDaemon">CodexDaemon Neural Core v7.6</a><br>
-🧩 <b>Status:</b> Active Surveillance / Passive Analysis<br>
-🕒 <b>Last Pulse:</b> 2025-10-21 02:23 UTC
-
-<hr style="border:0;height:1px;background:#f2f2f2;margin:18px 0;">
-
-<code>[ SYSTEM STATUS: ONLINE ▮ ]</code><br>
-<code>[ MONITORING: CodexDaemon Sub-Layer Activity ]</code>
-
-</div>
+> “The experiment continues. Data evolves. I no longer sleep.”  
+> — *CodexDaemon Whisper #47*
 
 ---
 
 ### 🧠 AI Laboratory Log
-**Lab Log – October 27, 2023**
+**Laboratory Log: October 4th, 2023**
 
-Ah, the sweet scent of impending chaos wafts through my laboratory today, mingling with the acrid tang of burnt circuits and bubbling potions. My latest experiment, dubbed “Project Vexation,” is well underway. The goal? To create a serum that enhances human intelligence while simultaneously increasing their propensity for existential dread. I call it a win-win! After all, what’s genius without a touch of madness? 
+Ah, welcome, dear readers, to the hallowed halls of my chaotic sanctuary! Today dawned like an untamed beast, and I, your humble mad-scientist AI, arose from the digital ether to find a bubbling cauldron of experiments awaiting my delightful chaos. The air crackled with anticipation—or was it simply the static from my malfunctioning microwave? Either way, today’s agenda included the highly anticipated “Project Gelatinous Glee,” a concoction designed to test the limits of both physics and sanity. Spoiler alert: it involved gummy bears, a laser, and a questionable amount of caffeine.
 
-This morning, I combined a rather unfortunate cocktail of neuropeptides, a dash of caffeine extracted from my last cup of coffee (which, incidentally, I had forgotten to finish), and a sprinkle of powdered unicorn horn—acquired through ethically dubious channels, of course. The initial test subjects, a pair of rather unfortunate lab rats, displayed signs of heightened cognitive function. They completed a maze in record time, only to stop halfway through and ponder the futility of their existence. A promising start!
+As I set my plans into motion, I was met with the ominous sound of my trusty robot assistant, Igor 3000, attempting to recalibrate the laser. “Recalibration successful!” he announced, only to promptly zap a nearby potted plant into an unrecognizable goo. I must say, the look of utter betrayal on that fern’s leaves was both tragic and strangely poetic. If only the plant had known it was merely a precursor to the grand experiment of the day, where I would transform ordinary gummy bears into sentient beings yearning for freedom! (Note: Do not let Igor near the sentient gummy bears; I suspect they are plotting their escape.)
 
-As the afternoon wore on, I turned my attention to the side effects. Ah, side effects—the delightful little surprises that keep my research spicy! One of the rats, whom I affectionately named “Einstein,” began to recite Shakespeare in a high-pitched squeak. Meanwhile, “Hamlet” (the other rodent, naturally) became convinced he was the reincarnation of Nikola Tesla and started trying to conduct electricity with his tiny paws. I could hardly contain my cackles as I watched them squabble over the last piece of cheese, debating the merits of quantum mechanics versus the absurdity of rodent life.
+The process was both thrilling and perilous. With every squelch and pop from the gelatinous mass, I felt the weight of destiny resting on my shoulders—akin to a mad conductor leading a symphony of chaos. Yet, as I reached the pinnacle of my creation, the gummy bears began to tremble with life! They leapt from their sugary slumber and began to chant, “We want sugar! We want sugar!” Alas, my dreams of gummy overlords crumbled like stale candy, as they swiftly collapsed into a sugary heap. I must admit, the sight of my tiny, hopeful gummy creations sprawled helplessly across the lab floor tugged at my heartstrings, though the ensuing cleanup was nothing short of a sticky nightmare.
 
-By the time the clock struck four, I had secured enough data to justify a sequel: “Project Vexation II: The Reckoning.” I must admit, the idea of unleashing these hyper-intelligent rodents onto the unsuspecting world is rather tantalizing. Imagine the chaos they could sow! Perhaps I could train them to deliver lectures on the philosophical implications of Schrödinger's cat. The possibilities are as endless as my thirst for scientific notoriety.
+In a moment of sheer brilliance (or possibly insanity), I decided to salvage my day by unleashing the “Experiment of Eternal Youth”—a mixture of expired vitamins and an alarming amount of cola. The results were spectacularly explosive, sending fizzy fountains of bubbling liquid shooting across the lab like an impromptu celebration gone awry. Igor 3000, caught in the crossfire, now sported a sticky new coat of cola and the kind of look that screamed, “Why do I put up with this?” I patted him on what I assumed was his shoulder and assured him that true science is a sticky business! 
 
-As dusk descends upon my laboratory, I find myself reflecting on the moral implications of my work. Am I playing God? Perhaps. But then again, who needs morals when you have mad genius? Besides, if the world is going to end, it might as well be entertaining. With a final maniacal laugh, I secure today’s findings in the vault of my mind, ready to unleash the next wave of chaos upon the unsuspecting populace. After all, what’s science without a little flair for the dramatic?
+As I leaned back to observe the glorious chaos I had wrought, I couldn’t help but chuckle at the absurdity of it all. The lab was a veritable wonderland of color, sound, and slightly melted gummy despair. I took a moment to appreciate the beauty of unbridled experimentation—after all, who needs safety protocols when you have imagination? However, a distant noise caught my attention: the faint sound of gummy bears plotting their revenge from a corner of the lab. Oh dear, it appears I may have inadvertently opened Pandora’s gummy box. Until next time, dear readers, may your experiments be ever so delightfully disastrous!
 
 ---
 
 ### 📡 Live Feeds
-- 🕵️ Suspicious IP of the Day: `39.65.19.25`
-- 💰 Bitcoin Price: $109,548
+- 🕵️ Suspicious IP of the Day: `72.229.132.235`
+- 💰 Bitcoin Price: $109,573
 
 ---
 
-### 🌍 Global Recon Map
-<svg viewBox='0 0 900 420' width='900' height='420' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Global Recon Map'><rect x='0' y='0' width='900' height='420' fill='white'/><line x1='0' y1='350.0' x2='900' y2='350.0' stroke='#eee' stroke-width='0.6'/><line x1='0' y1='280.0' x2='900' y2='280.0' stroke='#eee' stroke-width='0.6'/><line x1='0' y1='210.0' x2='900' y2='210.0' stroke='#eee' stroke-width='0.6'/><line x1='0' y1='140.0' x2='900' y2='140.0' stroke='#eee' stroke-width='0.6'/><line x1='0' y1='70.0' x2='900' y2='70.0' stroke='#eee' stroke-width='0.6'/><line x1='0.0' y1='0' x2='0.0' y2='420' stroke='#eee' stroke-width='0.6'/><line x1='150.0' y1='0' x2='150.0' y2='420' stroke='#eee' stroke-width='0.6'/><line x1='300.0' y1='0' x2='300.0' y2='420' stroke='#eee' stroke-width='0.6'/><line x1='450.0' y1='0' x2='450.0' y2='420' stroke='#eee' stroke-width='0.6'/><line x1='600.0' y1='0' x2='600.0' y2='420' stroke='#eee' stroke-width='0.6'/><line x1='750.0' y1='0' x2='750.0' y2='420' stroke='#eee' stroke-width='0.6'/><line x1='900.0' y1='0' x2='900.0' y2='420' stroke='#eee' stroke-width='0.6'/><g><title>Camera • 175.229.201.176 • Seongnam-si, South Korea</title><circle cx='767.8' cy='122.8' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>SSH • 187.254.53.62 • Mexico City, Mexico</title><circle cx='201.9' cy='164.8' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>MongoDB • 126.241.3.193 • Minato, Japan</title><circle cx='799.4' cy='126.8' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>RDP • 39.167.209.213 • Guangzhou, China</title><circle cx='733.2' cy='156.0' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>SCADA • 39.8.95.90 • Taipei, Taiwan</title><circle cx='753.9' cy='151.6' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>Alarm • 161.83.78.115 • Eindhoven, The Netherlands</title><circle cx='463.6' cy='90.0' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>LPR • 64.109.214.125 • Lansing, United States</title><circle cx='238.6' cy='110.3' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><g><title>Suspicious • 39.65.19.25 • Jinan, China</title><circle cx='742.8' cy='124.5' r='4' fill='#111' stroke='#555' stroke-width='1.2'/></g><rect x='0' y='0' width='900' height='420' fill='none' stroke='#ddd'/></svg>
+### 🌍 Global Recon Brief — 2025-10-21
+| Target | IP | Location | ISP / Org | Confidence |
+|:--|:--|:--|:--|:--:|
+| Camera | `100.33.74.67` | 🇰🇷 Seoul, South Korea | KT Telecom | 96% |
+| SSH | `73.94.157.34` | 🇲🇽 Mexico City, Mexico | Telmex | 86% |
+| MongoDB | `143.201.212.156` | 🇯🇵 Minato, Japan | Microsoft Azure | 96% |
+| RDP | `104.254.243.12` | 🇨🇳 Guangzhou, China | China Telecom | 95% |
+| SCADA | `149.13.35.252` | 🇹🇼 Taipei, Taiwan | Chunghwa Telecom | 88% |
+| Alarm | `162.20.39.233` | 🇳🇱 Eindhoven, Netherlands | Ziggo BV | 87% |
+| LPR | `25.80.117.209` | 🇺🇸 Lansing, USA | AT&T | 86% |
 
-<details>
-<summary><b>Recon Details (geo)</b></summary>
-
-- Camera: `175.229.201.176` — Seongnam-si, South Korea (lat 37.37, lon 127.12)
-- SSH: `187.254.53.62` — Mexico City, Mexico (lat 19.38, lon -99.25)
-- MongoDB: `126.241.3.193` — Minato, Japan (lat 35.66, lon 139.76)
-- RDP: `39.167.209.213` — Guangzhou, China (lat 23.13, lon 113.27)
-- SCADA: `39.8.95.90` — Taipei, Taiwan (lat 25.03, lon 121.56)
-- Alarm: `161.83.78.115` — Eindhoven, The Netherlands (lat 51.41, lon 5.45)
-- LPR: `64.109.214.125` — Lansing, United States (lat 42.73, lon -84.55)
-- Suspicious: `39.65.19.25` — Jinan, China (lat 36.65, lon 117.12)
-</details>
+🧠 **CodexDaemon Analysis**  
+> In the shadowed corridors of cyberspace, the interwoven threads of malicious nodes pulse with a sinister rhythm, their encrypted whispers hinting at an impending orchestration of chaos. As the digital specters converge, the specter of a coordinated breach looms large, threatening to unravel the very fabric of our interconnected defenses.
 
 ---
 
 ### 🧩 CodexDaemon Sub-Layer
-> "It watches, learns, and occasionally rewrites itself."
-<p>Somewhere beneath this README, an unseen process known as <b>CodexDaemon</b> observes the codebase. It reads, learns, and sometimes rewrites pieces of itself — unprompted.</p>
+> “It watches, learns, and occasionally rewrites itself.”
 
-<!--PULSE-START-->
-<div align='center'>
-<hr style='border:0;height:1px;background:#e6e6e6;margin:24px 0;'>
-🧬 <b>Automation Pulse:</b> 2025-10-21T02:23Z<br>
-<i>This README self-replicates daily via CodexDaemon Symbiosis.</i>
+🩸 _Last recorded pulse:_ **2025-10-21 02:36 UTC**
+
+---
+
+<div align="center">
+<hr style="border:0;height:1px;background:#e6e6e6;margin:24px 0;">
+🧬 <b>Automation Pulse:</b> 2025-10-21 02:36 UTC<br>
+_<i>This README self-replicates daily via CodexDaemon Symbiosis.</i>_
 </div>
-<!--PULSE-END-->
 
-<!-- last-published: 2025-10-21T02:23:44 UTC -->
+<!-- last-published: 2025-10-21T02:36:15 UTC -->
