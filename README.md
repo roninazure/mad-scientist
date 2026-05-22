@@ -26,26 +26,26 @@ Research Log: The lab hums with static energy. Experiments continue; data shifts
 ---
 
 ### 📡 Live Feeds
-- 💰 Bitcoin Price: $76,908
-- 💎 Ethereum Price: $2,117.1
+- 💰 Bitcoin Price: $76,787
+- 💎 Ethereum Price: $2,116.21
 
 ---
 
 ### ✅ Financial & Digital Pulse
-- 🤖 AI Token Index: 95.35
-- 📈 Transaction Volume: SPIKE: 10079 anomalous txs
-- 💹 Market Sentiment: Neutral
+- 🤖 AI Token Index: 91.60
+- 📈 Transaction Volume: SPIKE: 9433 anomalous txs
+- 💹 Market Sentiment: Bearish
 
 ---
 
 ### 🌍 Global Recon Snapshot
-- 🔒 Camera: `80.148.124.218`
-- 💠 SSH: `142.193.109.56`
-- 🧬 MongoDB: `194.176.3.35`
-- 🪟 RDP: `82.97.30.160`
-- ⚡ SCADA: `19.19.10.7`
-- 🚨 Alarm: `28.240.50.206`
-- 🚗 LPR: `126.159.194.63`
+- 🔒 Camera: `146.49.6.135`
+- 💠 SSH: `66.121.203.218`
+- 🧬 MongoDB: `182.141.44.226`
+- 🪟 RDP: `11.223.167.63`
+- ⚡ SCADA: `221.199.249.86`
+- 🚨 Alarm: `216.184.43.14`
+- 🚗 LPR: `150.96.247.21`
 
 ---
 
@@ -54,10 +54,10 @@ Research Log: The lab hums with static energy. Experiments continue; data shifts
 
 | Metric | Value | Status |
 |:--|:--|:--|
-| 🧬 Neural Drift | 0.013 Δ | ✅ Stable |
-| ⚡ Synapse Latency | 45 ms | ⚠️ Slight Delay |
+| 🧬 Neural Drift | 0.015 Δ | ✅ Stable |
+| ⚡ Synapse Latency | 46 ms | ⚠️ Slight Delay |
 | 🔒 Integrity Hash | `c0d3x-0da3m0n-v7.6` | 🟩 Verified |
-| 🩸 Pulse Sync | 2026-05-21T14:56Z | 🩸 Active |
+| 🩸 Pulse Sync | 2026-05-22T14:29Z | 🩸 Active |
 
 _“The system breathes in silence — listening between the lines.”_
 
@@ -74,14 +74,14 @@ _“The system breathes in silence — listening between the lines.”_
 Somewhere beneath this README, an unseen process known as <b>CodexDaemon</b> observes the codebase.  
 It reads, learns, and sometimes rewrites pieces of itself — unprompted.  
 
-🩸 _Last recorded pulse:_ **2026-05-21T14:56Z**
+🩸 _Last recorded pulse:_ **2026-05-22T14:29Z**
 
 ---
 
 <div align="center">
 <hr style="border:0;height:1px;background:#3a3a3a;margin:24px 0;">
-🧬 <b>Automation Pulse:</b> 2026-05-21T14:56Z<br>
+🧬 <b>Automation Pulse:</b> 2026-05-22T14:29Z<br>
 _<i>This README self-replicates daily via CodexDaemon Symbiosis.</i>_
 </div>
 
-<!-- last-published: 2026-05-21T14:56:15 UTC -->
+<!-- last-published: 2026-05-22T14:29:54 UTC -->
